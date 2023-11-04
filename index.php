@@ -26,7 +26,7 @@ $app->get('/', function (Request $request, Response $response) use ($tracer) {
         ->spanBuilder('manual-span')
         ->startSpan();
     $result = random_int(1,6);
-    $response->getBody()->write(strval($result));
+    $response->getBody()->write((string)$result);
     $span
         ->addEvent('rolled dice', ['result' => $result])
         ->end();
