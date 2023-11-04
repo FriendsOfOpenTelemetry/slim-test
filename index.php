@@ -1,5 +1,8 @@
 <?php
 
+//use OpenTelemetry\API\Signals;
+//use OpenTelemetry\Contrib\Grpc\GrpcTransportFactory;
+//use OpenTelemetry\Contrib\Otlp\OtlpUtil;
 use OpenTelemetry\Contrib\Otlp\OtlpHttpTransportFactory;
 use OpenTelemetry\Contrib\Otlp\SpanExporter;
 use OpenTelemetry\SDK\Trace\SpanProcessor\SimpleSpanProcessor;
@@ -10,9 +13,14 @@ use Slim\Factory\AppFactory;
 
 require __DIR__ . '/vendor/autoload.php';
 
-$transport = (new OtlpHttpTransportFactory())
+putenv('OTEL_PHP_FIBERS_ENABLED=true');
+
+$httpTransport = (new OtlpHttpTransportFactory())
     ->create('http://localhost:4318/v1/traces', 'application/json');
-$exporter = new SpanExporter($transport);
+
+//$grpcTransport = (new GrpcTransportFactory())->create('http://localhost:4317' . OtlpUtil::method(Signals::TRACE));
+
+$exporter = new SpanExporter($httpTransport);
 
 $tracerProvider = new TracerProvider(
     new SimpleSpanProcessor($exporter)
