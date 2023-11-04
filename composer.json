@@ -1,0 +1,18 @@
+{
+    "require": {
+        "php": ">=8.2",
+        "ext-opentelemetry": "*",
+        "ext-mbstring": "*",
+        "ext-ffi": "*",
+        "slim/slim": "^4",
+        "slim/psr7": "^1",
+        "open-telemetry/sdk": "^1.0",
+        "symfony/http-client": "^6.3",
+        "open-telemetry/exporter-otlp": "^1.0"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}
