@@ -6,9 +6,22 @@
 
 1. Setup environment by allowing `.envrc` file with `direnv allow`
 2. Install Composer dependencies with `composer install`
-3. In another terminal, run `otel-desktop-viewer`
-4. Run `index.php` with `php -S localhost:8001`
+
+## Trace
+
+Run `php -S localhost:8000 trace.php`
+
+Then navigate to <http://localhost:8000>.
+
+## Metric
+
+Run `php -S localhost:8001 metric.php` 
 
 Then navigate to <http://localhost:8001>.
 
-You should see a trace showing up on the OpenTelemetry Desktop Viewer tab or open <http://localhost:8000>.
+# Explore traces & metrics
+
+Run `docker-compose up -d` and navigate to <http://localhost:3000/explore>.
+
+- Exported metrics by Otel Collector: <http://localhost:8889/metrics>
+- Collected metrics by Prometheus: <http://localhost:9090>
